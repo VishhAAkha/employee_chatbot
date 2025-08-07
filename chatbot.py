@@ -12,16 +12,16 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# === Enhanced Professional Styling ===
+# === Professional Minimalist Styling ===
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
     
     .stApp {
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+        background: #f8fafc;
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         min-height: 100vh;
-        color: #f8fafc;
+        color: #1e293b;
     }
     
     /* Remove default spacing */
@@ -37,15 +37,14 @@ st.markdown("""
     
     /* Header Section */
     .header-section {
-        background: linear-gradient(135deg, #3b82f6, #1d4ed8, #1e40af);
+        background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
         color: white;
         padding: 4rem 2rem;
-        border-radius: 20px;
-        margin-bottom: 2.5rem;
-        box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+        border-radius: 16px;
+        margin-bottom: 3rem;
+        box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);
         position: relative;
         overflow: hidden;
-        border: 1px solid rgba(255, 255, 255, 0.1);
     }
     
     .header-section::before {
@@ -53,33 +52,23 @@ st.markdown("""
         position: absolute;
         top: -50%;
         right: -20%;
-        width: 400px;
-        height: 400px;
-        background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
         border-radius: 50%;
-        animation: float 6s ease-in-out infinite;
-    }
-    
-    @keyframes float {
-        0%, 100% { transform: translate(0, 0) rotate(0deg); }
-        50% { transform: translate(-20px, -10px) rotate(180deg); }
     }
     
     .header-title {
-        font-size: 3.5rem;
-        font-weight: 800;
+        font-size: 3rem;
+        font-weight: 700;
         margin-bottom: 1rem;
         position: relative;
         z-index: 2;
-        background: linear-gradient(135deg, #ffffff, #e2e8f0);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
         letter-spacing: -0.02em;
     }
     
     .header-subtitle {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         opacity: 0.95;
         font-weight: 400;
         position: relative;
@@ -92,30 +81,24 @@ st.markdown("""
     .content-grid {
         display: grid;
         grid-template-columns: 1fr 380px;
-        gap: 2.5rem;
+        gap: 3rem;
         margin-bottom: 2rem;
     }
     
     @media (max-width: 968px) {
         .content-grid {
             grid-template-columns: 1fr;
+            gap: 2rem;
         }
     }
     
     /* Chat Section */
     .chat-section {
-        background: linear-gradient(135deg, #1e293b, #334155);
-        border-radius: 24px;
+        background: white;
+        border-radius: 16px;
         padding: 2.5rem;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        animation: slideInLeft 0.8s ease-out;
-        backdrop-filter: blur(10px);
-    }
-    
-    @keyframes slideInLeft {
-        from { opacity: 0; transform: translateX(-40px); }
-        to { opacity: 1; transform: translateX(0); }
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e2e8f0;
     }
     
     .chat-header {
@@ -123,151 +106,111 @@ st.markdown("""
         align-items: center;
         margin-bottom: 2.5rem;
         padding-bottom: 1.5rem;
-        border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid #e2e8f0;
     }
     
     .chat-icon {
-        width: 70px;
-        height: 70px;
+        width: 60px;
+        height: 60px;
         background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-        border-radius: 20px;
+        border-radius: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 2rem;
+        font-size: 1.5rem;
         margin-right: 1.5rem;
-        box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
     }
     
     .chat-title {
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: #f8fafc;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #1e293b;
         margin: 0;
         margin-bottom: 0.5rem;
     }
     
     .chat-subtitle {
-        color: #cbd5e1;
-        font-size: 1rem;
+        color: #64748b;
+        font-size: 0.95rem;
         font-weight: 400;
     }
     
     /* Enhanced Input Styling */
     .stTextInput > div > div > input {
-        background: linear-gradient(135deg, #475569, #64748b) !important;
-        border: 2px solid rgba(59, 130, 246, 0.3) !important;
-        border-radius: 16px !important;
-        padding: 1.5rem 2rem !important;
-        font-size: 1.1rem !important;
-        font-weight: 500 !important;
-        color: #f8fafc !important;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important;
-        transition: all 0.4s ease !important;
-        backdrop-filter: blur(10px) !important;
+        background: #f8fafc !important;
+        border: 2px solid #e2e8f0 !important;
+        border-radius: 12px !important;
+        padding: 1.2rem 1.5rem !important;
+        font-size: 1rem !important;
+        font-weight: 400 !important;
+        color: #1e293b !important;
+        transition: all 0.3s ease !important;
     }
     
     .stTextInput > div > div > input::placeholder {
-        color: #cbd5e1 !important;
-        opacity: 0.8 !important;
+        color: #94a3b8 !important;
+        opacity: 1 !important;
         font-weight: 400 !important;
     }
     
     .stTextInput > div > div > input:focus {
         border: 2px solid #3b82f6 !important;
-        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2), 0 20px 40px rgba(0,0,0,0.3) !important;
-        transform: translateY(-3px) !important;
-        background: linear-gradient(135deg, #64748b, #475569) !important;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
         outline: none !important;
+        background: white !important;
     }
     
     /* Message Bubbles */
     .message-container {
-        animation: slideInUp 0.6s ease-out;
         margin: 2rem 0;
     }
     
-    @keyframes slideInUp {
-        from { opacity: 0; transform: translateY(30px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    
     .user-bubble {
-        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-        color: white;
-        padding: 2rem;
-        border-radius: 24px 24px 8px 24px;
+        background: #f1f5f9;
+        color: #1e293b;
+        padding: 1.5rem;
+        border-radius: 16px 16px 4px 16px;
         margin-left: 10%;
         margin-bottom: 1.5rem;
-        box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
-        position: relative;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(10px);
+        border-left: 4px solid #3b82f6;
     }
     
     .bot-bubble {
-        background: linear-gradient(135deg, #374151, #4b5563);
-        color: #f8fafc;
-        padding: 2rem;
-        border-radius: 24px 24px 24px 8px;
+        background: white;
+        color: #1e293b;
+        padding: 1.5rem;
+        border-radius: 16px 16px 16px 4px;
         margin-right: 10%;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-        border-left: 4px solid #3b82f6;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e2e8f0;
+        border-left: 4px solid #10b981;
     }
     
     .fallback-bubble {
-        background: linear-gradient(135deg, #f59e0b, #d97706);
-        color: white;
-        padding: 2rem;
-        border-radius: 24px 24px 24px 8px;
+        background: #fef3c7;
+        color: #92400e;
+        padding: 1.5rem;
+        border-radius: 16px 16px 16px 4px;
         margin-right: 10%;
-        box-shadow: 0 15px 35px rgba(245, 158, 11, 0.4);
-        border-left: 4px solid #fbbf24;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(10px);
-    }
-    
-    .confidence-pill {
-        display: inline-block;
-        background: rgba(255, 255, 255, 0.25);
-        color: white;
-        padding: 0.5rem 1rem;
-        border-radius: 25px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        margin-top: 1rem;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(5px);
+        border-left: 4px solid #f59e0b;
+        border: 1px solid #fde68a;
     }
     
     /* Sidebar Section */
-    .sidebar-section {
-        animation: slideInRight 0.8s ease-out;
-    }
-    
-    @keyframes slideInRight {
-        from { opacity: 0; transform: translateX(40px); }
-        to { opacity: 1; transform: translateX(0); }
-    }
-    
     .sidebar-card {
-        background: linear-gradient(135deg, #1e293b, #334155);
-        border-radius: 20px;
+        background: white;
+        border-radius: 12px;
         padding: 2rem;
         margin-bottom: 2rem;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        transition: all 0.4s ease;
-        backdrop-filter: blur(10px);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e2e8f0;
+        transition: all 0.3s ease;
     }
     
     .sidebar-card:hover {
-        transform: translateY(-5px) scale(1.02);
-        box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-        border-color: rgba(59, 130, 246, 0.3);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
     }
     
     .sidebar-header {
@@ -277,60 +220,56 @@ st.markdown("""
     }
     
     .sidebar-icon {
-        width: 50px;
-        height: 50px;
+        width: 48px;
+        height: 48px;
         background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-        border-radius: 12px;
+        border-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         margin-right: 1rem;
         color: white;
-        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
-        border: 1px solid rgba(255, 255, 255, 0.2);
     }
     
     .sidebar-title {
-        font-weight: 700;
-        color: #f8fafc;
-        font-size: 1.3rem;
+        font-weight: 600;
+        color: #1e293b;
+        font-size: 1.1rem;
         margin: 0;
     }
     
-    /* Quick Actions - Enhanced */
+    /* Quick Actions */
     .quick-actions-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 1rem;
+        gap: 0.75rem;
         margin-top: 1.5rem;
     }
     
     .stButton > button {
-        background: linear-gradient(135deg, #475569, #64748b) !important;
-        border: 1px solid rgba(59, 130, 246, 0.3) !important;
-        border-radius: 12px !important;
-        padding: 1rem 1.5rem !important;
-        font-size: 0.9rem !important;
-        font-weight: 600 !important;
-        color: #f8fafc !important;
+        background: #f8fafc !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 8px !important;
+        padding: 0.75rem 1rem !important;
+        font-size: 0.85rem !important;
+        font-weight: 500 !important;
+        color: #475569 !important;
         cursor: pointer !important;
-        transition: all 0.3s ease !important;
-        text-align: left !important;
+        transition: all 0.2s ease !important;
         width: 100% !important;
-        backdrop-filter: blur(10px) !important;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
+        text-align: center !important;
     }
     
     .stButton > button:hover {
-        background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
-        transform: translateY(-2px) scale(1.05) !important;
-        box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4) !important;
-        border-color: rgba(255, 255, 255, 0.2) !important;
+        background: #3b82f6 !important;
+        color: white !important;
+        border-color: #3b82f6 !important;
+        transform: translateY(-1px) !important;
     }
     
     .stButton > button:focus {
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3) !important;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
         outline: none !important;
     }
     
@@ -343,95 +282,52 @@ st.markdown("""
     }
     
     .stat-card {
-        background: linear-gradient(135deg, #1e293b, #334155);
-        border-radius: 20px;
-        padding: 2.5rem;
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
         text-align: center;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        transition: all 0.4s ease;
-        backdrop-filter: blur(10px);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e2e8f0;
+        transition: all 0.3s ease;
     }
     
     .stat-card:hover {
-        transform: translateY(-8px) scale(1.05);
-        box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-        border-color: rgba(59, 130, 246, 0.3);
+        transform: translateY(-4px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     }
     
     .stat-number {
-        font-size: 3rem;
-        font-weight: 800;
-        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin-bottom: 1rem;
-        text-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #3b82f6;
+        margin-bottom: 0.5rem;
     }
     
     .stat-label {
-        color: #cbd5e1;
-        font-weight: 600;
-        font-size: 1rem;
-        letter-spacing: 0.5px;
+        color: #64748b;
+        font-weight: 500;
+        font-size: 0.9rem;
+        letter-spacing: 0.3px;
     }
     
-    /* Footer */
-    .footer-section {
-        background: linear-gradient(135deg, #0f172a, #1e293b);
-        color: #f8fafc;
-        padding: 3rem;
-        border-radius: 20px;
-        margin-top: 4rem;
-        text-align: center;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-    }
-    
-    .footer-title {
-        font-size: 1.5rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-    
-    .footer-subtitle {
-        opacity: 0.9;
-        font-size: 1rem;
-        margin-bottom: 1.5rem;
-        color: #cbd5e1;
-    }
-    
-    .footer-note {
-        font-size: 0.85rem;
-        opacity: 0.7;
-        color: #94a3b8;
-    }
-    
-    /* Resources Card Enhanced */
+    /* Resources Card */
     .resources-card {
-        background: linear-gradient(135deg, #1e293b, #334155);
-        border-radius: 16px;
+        background: white;
+        border-radius: 12px;
         padding: 2rem;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        font-size: 0.95rem;
-        color: #f8fafc;
-        line-height: 1.7;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e2e8f0;
+        font-size: 0.9rem;
+        color: #1e293b;
+        line-height: 1.6;
         margin-top: 1rem;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
     }
     
     .resources-card h4 {
-        color: #f8fafc;
+        color: #1e293b;
         margin-bottom: 1.5rem;
-        font-weight: 700;
-        font-size: 1.2rem;
+        font-weight: 600;
+        font-size: 1.1rem;
     }
     
     .resources-card ul {
@@ -440,33 +336,32 @@ st.markdown("""
     }
     
     .resources-card li {
-        margin-bottom: 0.8rem;
-        color: #cbd5e1;
-        font-weight: 500;
+        margin-bottom: 0.75rem;
+        color: #475569;
+        font-weight: 400;
     }
     
     .resources-card strong {
-        color: #f8fafc;
+        color: #1e293b;
+        font-weight: 600;
     }
     
-    /* System Info Enhanced */
+    /* System Info Card */
     .system-info-card {
-        background: linear-gradient(135deg, #374151, #4b5563);
-        border-radius: 16px;
+        background: #f8fafc;
+        border-radius: 12px;
         padding: 2rem;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        font-size: 0.95rem;
-        color: #f8fafc;
-        line-height: 1.7;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
+        font-size: 0.9rem;
+        color: #1e293b;
+        line-height: 1.6;
+        border: 1px solid #e2e8f0;
     }
     
     .system-info-card h4 {
-        color: #f8fafc;
+        color: #1e293b;
         margin-bottom: 1.5rem;
-        font-weight: 700;
-        font-size: 1.2rem;
+        font-weight: 600;
+        font-size: 1.1rem;
     }
     
     .system-info-card ul {
@@ -475,25 +370,53 @@ st.markdown("""
     }
     
     .system-info-card li {
-        margin-bottom: 0.8rem;
-        color: #cbd5e1;
+        margin-bottom: 0.75rem;
+        color: #475569;
     }
     
     .system-info-card strong {
-        color: #f8fafc;
+        color: #1e293b;
         font-weight: 600;
+    }
+    
+    /* Footer */
+    .footer-section {
+        background: linear-gradient(135deg, #1e40af, #3b82f6);
+        color: white;
+        padding: 3rem;
+        border-radius: 12px;
+        margin-top: 4rem;
+        text-align: center;
+    }
+    
+    .footer-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+    
+    .footer-subtitle {
+        opacity: 0.9;
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        font-weight: 400;
+    }
+    
+    .footer-note {
+        font-size: 0.85rem;
+        opacity: 0.8;
+        line-height: 1.5;
     }
     
     /* Streamlit Expander Styling */
     .streamlit-expander {
-        background: linear-gradient(135deg, #1e293b, #334155) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        border-radius: 16px !important;
-        backdrop-filter: blur(10px) !important;
+        background: white !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 12px !important;
     }
     
     .streamlit-expander > div > div > div {
-        color: #f8fafc !important;
+        color: #1e293b !important;
     }
     
     /* Hide Streamlit elements */
@@ -501,39 +424,25 @@ st.markdown("""
     .stDeployButton {display:none;}
     footer {visibility: hidden;}
     .stApp > header {visibility: hidden;}
-    .css-1rs6os {visibility: hidden;}
-    .css-17eq0hr {visibility: hidden;}
-    
-    /* Loading states */
-    .loading-pulse {
-        animation: pulse 2s infinite;
-    }
-    
-    @keyframes pulse {
-        0% { opacity: 1; }
-        50% { opacity: 0.7; }
-        100% { opacity: 1; }
-    }
     
     /* Suggestion buttons styling */
     .suggestion-container .stButton > button {
-        background: linear-gradient(135deg, #374151, #4b5563) !important;
-        color: #f8fafc !important;
-        border: 1px solid rgba(59, 130, 246, 0.3) !important;
-        border-radius: 12px !important;
-        padding: 0.8rem 1.2rem !important;
-        margin: 0.5rem 0.5rem 0.5rem 0 !important;
-        font-size: 0.9rem !important;
+        background: white !important;
+        color: #475569 !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 8px !important;
+        padding: 0.75rem 1rem !important;
+        margin: 0.25rem 0.25rem 0.25rem 0 !important;
+        font-size: 0.85rem !important;
         font-weight: 500 !important;
-        backdrop-filter: blur(10px) !important;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
-        transition: all 0.3s ease !important;
+        transition: all 0.2s ease !important;
     }
     
     .suggestion-container .stButton > button:hover {
-        background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
-        transform: translateY(-2px) !important;
-        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4) !important;
+        background: #3b82f6 !important;
+        color: white !important;
+        border-color: #3b82f6 !important;
+        transform: translateY(-1px) !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -658,7 +567,7 @@ except Exception as e:
 st.markdown("""
 <div class="header-section">
     <div class="header-title">💼 Employee Help Center</div>
-    <div class="header-subtitle">Get instant answers to your workplace questions • Self-service support • Available 24/7 • AI-powered assistance</div>
+    <div class="header-subtitle">Your central hub for workplace support, answers, and information • Self-service support • Available 24/7</div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -672,7 +581,7 @@ st.markdown("""
         <div class="chat-icon">💬</div>
         <div>
             <div class="chat-title">Ask Your Question</div>
-            <div class="chat-subtitle">Type your question below and get instant AI-powered answers</div>
+            <div class="chat-subtitle">Type your question below and get answers from our knowledge base</div>
         </div>
     </div>
 </div>
@@ -708,7 +617,7 @@ for suggestion in suggestions:
 user_input = st.text_input(
     "",
     value=st.session_state.selected_question,
-    placeholder="💭 Ask me anything about company policies, benefits, IT support, or workplace procedures...",
+    placeholder="💭 Ask about company policies, benefits, IT support, or workplace procedures...",
     key="user_input"
 )
 
@@ -738,11 +647,8 @@ if user_input and user_input.strip():
             st.markdown(f"""
             <div class="message-container">
                 <div class="bot-bubble">
-                    <strong>🤖 AI Assistant:</strong><br>
+                    <strong>📋 Answer:</strong><br>
                     {answer.strip()}
-                    <div class="confidence-pill">
-                        ✨ Confidence: {score:.0%}
-                    </div>
                 </div>
             </div>
             """, unsafe_allow_html=True)
@@ -751,7 +657,7 @@ if user_input and user_input.strip():
             <div class="message-container">
                 <div class="fallback-bubble">
                     <strong>🤔 Need Human Assistance?</strong><br>
-                    I couldn't find a specific answer for that question in my knowledge base. Please reach out to our support team for personalized help:
+                    I couldn't find a specific answer for that question in our knowledge base. Please reach out to our support team for personalized help:
                     <br><br>
                     📧 <strong>HR Team:</strong> hr@company.com<br>
                     💻 <strong>IT Support:</strong> it-support@company.com<br>
@@ -857,7 +763,7 @@ with col4:
     st.markdown("""
     <div class="stat-card">
         <div class="stat-number">95%</div>
-        <div class="stat-label">Accuracy Rate</div>
+        <div class="stat-label">Success Rate</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -874,7 +780,7 @@ with st.expander("🔧 System Information & Knowledge Base", expanded=False):
             <li><strong>Last Updated:</strong> August 2025</li>
             <li><strong>Coverage:</strong> Company-wide policies and procedures</li>
             <li><strong>Response Time:</strong> <500ms average</li>
-            <li><strong>Accuracy:</strong> 95%+ for known topics</li>
+            <li><strong>Success Rate:</strong> 95%+ for known topics</li>
             <li><strong>Language:</strong> English with multilingual support planned</li>
             <li><strong>Availability:</strong> 24/7/365 with 99.9% uptime</li>
         </ul>
@@ -888,10 +794,8 @@ st.markdown("""
     <div class="footer-title">💼 Employee Help Center</div>
     <div class="footer-subtitle">Your intelligent workplace assistant for instant support and guidance</div>
     <div class="footer-note">
-      
-        <br><br>
         For complex issues or personalized assistance, please contact the relevant department directly.
-        <br>
+        <br><br>
         <strong>Created by Vishakha Deshpande</strong> • Internal use only • © 2025
     </div>
 </div>
