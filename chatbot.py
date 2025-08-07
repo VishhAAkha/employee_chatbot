@@ -724,7 +724,6 @@ st.markdown("""
         <li>🎯 <strong>Company Policies</strong> — Leave, travel, conduct guidelines</li>
         <li>📞 <strong>Contact Directory</strong> — Key HR, IT, Admin contacts</li>
         <li>🔧 <strong>IT Self-Service</strong> — Password reset, software requests</li>
-        # <li>💡 <strong>Training Portal</strong> — Skills development, certifications</li>
         <li>📊 <strong>Performance Hub</strong> — Goals, reviews, feedback</li>
     </ul>
 </div>
