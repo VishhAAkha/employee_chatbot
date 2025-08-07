@@ -605,18 +605,23 @@ st.markdown('</div></div>', unsafe_allow_html=True)
 # """, unsafe_allow_html=True)
 
 # Help Resources Card
+# Improved Resources Card
 st.markdown("""
-<div class="sidebar-card">
-    <div class="sidebar-header">
-        <div class="sidebar-icon">📚</div>
-        <div class="sidebar-title">Resources</div>
-    </div>
-    <div style="font-size: 0.9rem; line-height: 1.6;">
-        <div style="margin-bottom: 0.5rem;">📖 Employee Handbook</div>
-        <div style="margin-bottom: 0.5rem;">🎯 Company Policies</div>
-        <div style="margin-bottom: 0.5rem;">📞 Contact Directory</div>
-        <div style="margin-bottom: 0.5rem;">🔧 IT Self-Service</div>
-    </div>
+<div style="background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            font-size: 0.95rem;
+            color: #2c3e50;
+            line-height: 1.6;
+            margin-top: 1rem;">
+    <h4 style="margin-bottom: 1rem;">📚 Helpful Resources</h4>
+    <ul style="list-style: none; padding-left: 0;">
+        <li style="margin-bottom: 0.5rem;">📖 <strong>Employee Handbook</strong> — Company culture, rules, policies</li>
+        <li style="margin-bottom: 0.5rem;">🎯 <strong>Company Policies</strong> — Leave, travel, conduct guidelines</li>
+        <li style="margin-bottom: 0.5rem;">📞 <strong>Contact Directory</strong> — Key HR, IT, Admin emails</li>
+        <li style="margin-bottom: 0.5rem;">🔧 <strong>IT Self-Service</strong> — Password reset, laptop requests</li>
+    </ul>
 </div>
 """, unsafe_allow_html=True)
 
