@@ -780,9 +780,7 @@ with st.expander("🔧 System Information & Knowledge Base", expanded=False):
             <li><strong>Last Updated:</strong> August 2025</li>
             <li><strong>Coverage:</strong> Company-wide policies and procedures</li>
             <li><strong>Response Time:</strong> <500ms average</li>
-            <li><strong>Success Rate:</strong> 95%+ for known topics</li>
-            <li><strong>Language:</strong> English with multilingual support planned</li>
-            <li><strong>Availability:</strong> 24/7/365 with 99.9% uptime</li>
+        
         </ul>
         <br>
     </div>
