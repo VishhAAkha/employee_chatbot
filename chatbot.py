@@ -724,7 +724,7 @@ st.markdown("""
         <li>🎯 <strong>Company Policies</strong> — Leave, travel, conduct guidelines</li>
         <li>📞 <strong>Contact Directory</strong> — Key HR, IT, Admin contacts</li>
         <li>🔧 <strong>IT Self-Service</strong> — Password reset, software requests</li>
-        <li>💡 <strong>Training Portal</strong> — Skills development, certifications</li>
+        # <li>💡 <strong>Training Portal</strong> — Skills development, certifications</li>
         <li>📊 <strong>Performance Hub</strong> — Goals, reviews, feedback</li>
     </ul>
 </div>
@@ -778,13 +778,13 @@ with st.expander("🔧 System Information & Knowledge Base", expanded=False):
         <h4>📊 Knowledge Base Summary</h4>
         <ul>
             <li><strong>Total Topics:</strong> {len(df_qna)} comprehensive answers</li>
-            <li><strong>Categories:</strong> HR, IT Support, Policies, Benefits, Training</li>
+            <li><strong>Categories:</strong> HR, IT Support, Policies, Benefits</li>
             <li><strong>Last Updated:</strong> August 2025</li>
             <li><strong>Coverage:</strong> Company-wide policies and procedures</li>
             <li><strong>Response Time:</strong> <500ms average</li>
-            <li><strong>Success Rate:</strong> 95%+ for known topics</li>
-            <li><strong>Language:</strong> English with multilingual support planned</li>
-            <li><strong>Availability:</strong> 24/7/365 with 99.9% uptime</li>
+            # <li><strong>Success Rate:</strong> 95%+ for known topics</li>
+            # <li><strong>Language:</strong> English with multilingual support planned</li>
+            # <li><strong>Availability:</strong> 24/7/365 with 99.9% uptime</li>
         </ul>
         <br>
     </div>
