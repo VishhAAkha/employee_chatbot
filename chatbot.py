@@ -775,8 +775,8 @@ st.markdown("""
         <li>🎯 <strong>Company Policies</strong> — Leave, travel, conduct guidelines</li>
         <li>📞 <strong>Contact Directory</strong> — Key HR, IT, Admin contacts</li>
         <li>🔧 <strong>IT Self-Service</strong> — Password reset, software requests</li>
-        <li>💡 <strong>Training Portal</strong> — Skills development, certifications</li>
-        <li>📊 <strong>Performance Hub</strong> — Goals, reviews, feedback</li>
+        # <li>💡 <strong>Training Portal</strong> — Skills development, certifications</li>
+        # <li>📊 <strong>Performance Hub</strong> — Goals, reviews, feedback</li>
     </ul>
 </div>
 """, unsafe_allow_html=True)
@@ -815,8 +815,8 @@ with col3:
 with col4:
     st.markdown("""
     <div class="stat-card">
-        <div class="stat-number">95%</div>
-        <div class="stat-label">Accuracy Rate</div>
+        # <div class="stat-number">95%</div>
+        # <div class="stat-label">Accuracy Rate</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -829,22 +829,22 @@ with st.expander("🔧 System Information & Knowledge Base", expanded=False):
         <h4>📊 Knowledge Base Summary</h4>
         <ul>
             <li><strong>Total Topics:</strong> {len(df_qna)} comprehensive answers</li>
-            <li><strong>Categories:</strong> HR, IT Support, Policies, Benefits, Training</li>
+            <li><strong>Categories:</strong> HR, IT Support, Policies, Benefits</li>
             <li><strong>Last Updated:</strong> August 2025</li>
-            <li><strong>Coverage:</strong> Company-wide policies and procedures</li>
-            <li><strong>Response Time:</strong> <500ms average</li>
-            <li><strong>Accuracy:</strong> 95%+ for known topics</li>
-            <li><strong>Language:</strong> English with multilingual support planned</li>
-            <li><strong>Availability:</strong> 24/7/365 with 99.9% uptime</li>
+            # <li><strong>Coverage:</strong> Company-wide policies and procedures</li>
+            # <li><strong>Response Time:</strong> <500ms average</li>
+            # <li><strong>Accuracy:</strong> 95%+ for known topics</li>
+            # <li><strong>Language:</strong> English with multilingual support planned</li>
+            # <li><strong>Availability:</strong> 24/7/365 with 99.9% uptime</li>
         </ul>
         <br>
         <h4>🤖 AI Technology</h4>
-        <ul>
-            <li><strong>Model:</strong> Sentence Transformers (all-MiniLM-L6-v2)</li>
-            <li><strong>Matching:</strong> Semantic similarity with cosine distance</li>
-            <li><strong>Confidence Threshold:</strong> 60% minimum for answers</li>
-            <li><strong>Fallback:</strong> Human support referral for low confidence</li>
-        </ul>
+        # <ul>
+        #     <li><strong>Model:</strong> Sentence Transformers (all-MiniLM-L6-v2)</li>
+        #     <li><strong>Matching:</strong> Semantic similarity with cosine distance</li>
+        #     <li><strong>Confidence Threshold:</strong> 60% minimum for answers</li>
+        #     <li><strong>Fallback:</strong> Human support referral for low confidence</li>
+        # </ul>
     </div>
     """, unsafe_allow_html=True)
 
@@ -854,7 +854,6 @@ st.markdown("""
     <div class="footer-title">💼 Employee Help Center</div>
     <div class="footer-subtitle">Your intelligent workplace assistant for instant support and guidance</div>
     <div class="footer-note">
-        🚀 Powered by AI • 🔒 Secure & Private • 📱 Mobile Friendly
         <br><br>
         For complex issues or personalized assistance, please contact the relevant department directly.
         <br>
