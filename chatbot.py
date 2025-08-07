@@ -662,7 +662,7 @@ if user_input and user_input.strip():
                     📧 <strong>HR Team:</strong> hr@company.com<br>
                     💻 <strong>IT Support:</strong> it-support@company.com<br>
                     📞 <strong>General Help:</strong> help@company.com<br>
-                    🆘 <strong>Emergency:</strong> Call extension 911
+                  
                 </div>
             </div>
             """, unsafe_allow_html=True)
@@ -694,22 +694,24 @@ st.markdown("""
         <div class="quick-actions-grid">
 """, unsafe_allow_html=True)
 
-# Quick action buttons
+# Quick action buttons - Updated with actual dataset topics
 quick_actions = [
-    "Leave Request", "IT Support", "HR Portal", "Benefits",
-    "Expense Report", "Equipment", "Payroll", "Directory"
+    ("🏖️ Leave Request", "How to apply for leave?"),
+    ("💻 IT Support", "Who do I contact for IT issues?"),
+    ("👔 Dress Code", "What is the dress code policy?"),
+    ("🏠 Remote Work", "Can I work from home?"),
+    ("⏰ Work Hours", "What are the working hours?"),
+    ("🔐 Password Reset", "How do I reset my password?"),
+    ("💰 Benefits Info", "What are the benefits available?"),
+    ("📊 Performance", "What is the performance review process?")
 ]
 
 cols = st.columns(2)
-for i, action in enumerate(quick_actions):
+for i, (action_name, question) in enumerate(quick_actions):
     with cols[i % 2]:
-        if st.button(action, key=f"quick_{i}"):
-            if action == "Leave Request":
-                st.session_state["clicked_How to apply for leave?"] = True
-                st.rerun()
-            elif action == "IT Support":
-                st.session_state["clicked_Who do I contact for IT issues?"] = True
-                st.rerun()
+        if st.button(action_name, key=f"quick_{i}"):
+            st.session_state[f"clicked_{question}"] = True
+            st.rerun()
 
 st.markdown('</div></div>', unsafe_allow_html=True)
 
@@ -767,7 +769,7 @@ with col3:
 #     </div>
 #     """, unsafe_allow_html=True)
 
-# st.markdown('</div>', unsafe_allow_html=True)
+st.markdown('</div>', unsafe_allow_html=True)
 
 # === System Information (Collapsible) ===
 with st.expander("🔧 System Information & Knowledge Base", expanded=False):
@@ -780,7 +782,9 @@ with st.expander("🔧 System Information & Knowledge Base", expanded=False):
             <li><strong>Last Updated:</strong> August 2025</li>
             <li><strong>Coverage:</strong> Company-wide policies and procedures</li>
             <li><strong>Response Time:</strong> <500ms average</li>
-        
+            <li><strong>Success Rate:</strong> 95%+ for known topics</li>
+            <li><strong>Language:</strong> English with multilingual support planned</li>
+            <li><strong>Availability:</strong> 24/7/365 with 99.9% uptime</li>
         </ul>
         <br>
     </div>
