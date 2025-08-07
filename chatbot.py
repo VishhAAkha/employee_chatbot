@@ -600,23 +600,59 @@ def get_embeddings(questions, _model):
 
 # === Semantic Matching ===
 def get_answer(user_query, df_qna, question_embeddings, model, threshold=0.6):
-    query_embedding = model.encode([user_query])
-    scores = cosine_similarity(query_embedding, question_embeddings)[0]
-    best_idx = scores.argmax()
-    confidence = scores[best_idx]
+    try:
+        # Encode the user query
+        query_embedding = model.encode([user_query])
+        
+        # Calculate cosine similarity
+        scores = cosine_similarity(query_embedding, question_embeddings)[0]
+        
+        # Find the best match
+        best_idx = scores.argmax()
+        confidence = scores[best_idx]
 
-    if confidence < threshold:
-        return None, None, confidence
+        # Check if confidence meets threshold
+        if confidence < threshold:
+            return None, None, confidence
 
-    best_question = df_qna.iloc[best_idx]["Question"]
-    best_answer = df_qna.iloc[best_idx]["Answer / Statement"]
-    return best_question, best_answer
+        # Get the best question and answer
+        best_question = df_qna.iloc[best_idx]["Question"]
+        best_answer = df_qna.iloc[best_idx]["Answer / Statement"]
+        
+        return best_question, best_answer, confidence
+    
+    except Exception as e:
+        st.error(f"Error in get_answer function: {str(e)}")
+        return None, None, 0.0
 
-# Load resources
-with st.spinner('⚡ Loading Help Center...'):
-    df_qna = load_data("Chatbot_QnA_Dummy_Data_Updated.xlsx")
-    model = load_model()
-    question_embeddings = get_embeddings(df_qna["Question"].tolist(), model)
+# Load resources with error handling
+try:
+    with st.spinner('⚡ Loading Help Center...'):
+        df_qna = load_data("Chatbot_QnA_Dummy_Data_Updated.xlsx")
+        
+        # Verify the dataframe is not empty
+        if df_qna.empty:
+            st.error("No Q&A data found. Please check your data file.")
+            st.stop()
+            
+        # Check required columns exist
+        required_columns = ['Question', 'Answer / Statement']
+        missing_columns = [col for col in required_columns if col not in df_qna.columns]
+        if missing_columns:
+            st.error(f"Missing required columns: {missing_columns}")
+            st.stop()
+        
+        model = load_model()
+        question_embeddings = get_embeddings(df_qna["Question"].tolist(), model)
+        
+        # Verify embeddings were created
+        if question_embeddings is None or len(question_embeddings) == 0:
+            st.error("Failed to create question embeddings.")
+            st.stop()
+            
+except Exception as e:
+    st.error(f"Error loading resources: {str(e)}")
+    st.stop()
 
 # === Header Section ===
 st.markdown("""
@@ -680,61 +716,66 @@ user_input = st.text_input(
 if st.session_state.selected_question and user_input == st.session_state.selected_question:
     st.session_state.selected_question = ""
 
-# Process user input
-if user_input:
-    with st.spinner('🔍 Searching knowledge base...'):
-        time.sleep(0.5)
-        match_q, answer, score = get_answer(user_input, df_qna, question_embeddings, model)
-    
-    # Display user message
-    st.markdown(f"""
-    <div class="message-container">
-        <div class="user-bubble">
-            <strong>💬 Your Question:</strong><br>
-            {user_input}
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    # Display response
-    if answer:
+# Process user input with error handling
+if user_input and user_input.strip():
+    try:
+        with st.spinner('🔍 Searching knowledge base...'):
+            time.sleep(0.3)
+            match_q, answer, score = get_answer(user_input.strip(), df_qna, question_embeddings, model)
+        
+        # Display user message
         st.markdown(f"""
         <div class="message-container">
-            <div class="bot-bubble">
-                <strong>🤖 AI Assistant:</strong><br>
-                {answer}
-                <div class="confidence-pill">
-                     ✨ Confidence: {score:.0%}
-                </div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-    else:
-        st.markdown(f"""
-        <div class="message-container">
-            <div class="fallback-bubble">
-                <strong>🤔 Need Human Assistance?</strong><br>
-                I couldn't find a specific answer for that question in my knowledge base. Please reach out to our support team for personalized help:
-                <br><br>
-                📧 <strong>HR Team:</strong> hr@company.com<br>
-                💻 <strong>IT Support:</strong> it-support@company.com<br>
-                📞 <strong>General Help:</strong> help@company.com<br>
-                🆘 <strong>Emergency:</strong> Call extension 911
+            <div class="user-bubble">
+                <strong>💬 Your Question:</strong><br>
+                {user_input.strip()}
             </div>
         </div>
         """, unsafe_allow_html=True)
         
-        # Show popular questions with better styling
-        st.markdown("### 💡 Try these popular questions:")
-        st.markdown('<div class="suggestion-container">', unsafe_allow_html=True)
-        cols = st.columns(2)
-        for i, suggestion in enumerate(suggestions[:6]):
-            clean_suggestion = suggestion.split(' ', 1)[1]
-            with cols[i % 2]:
-                if st.button(suggestion, key=f"suggest_{i}"):
-                    st.session_state[f"clicked_{clean_suggestion}"] = True
-                    st.rerun()
-        st.markdown('</div>', unsafe_allow_html=True)
+        # Display response
+        if answer and answer.strip():
+            st.markdown(f"""
+            <div class="message-container">
+                <div class="bot-bubble">
+                    <strong>🤖 AI Assistant:</strong><br>
+                    {answer.strip()}
+                    <div class="confidence-pill">
+                        ✨ Confidence: {score:.0%}
+                    </div>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+        else:
+            st.markdown(f"""
+            <div class="message-container">
+                <div class="fallback-bubble">
+                    <strong>🤔 Need Human Assistance?</strong><br>
+                    I couldn't find a specific answer for that question in my knowledge base. Please reach out to our support team for personalized help:
+                    <br><br>
+                    📧 <strong>HR Team:</strong> hr@company.com<br>
+                    💻 <strong>IT Support:</strong> it-support@company.com<br>
+                    📞 <strong>General Help:</strong> help@company.com<br>
+                    🆘 <strong>Emergency:</strong> Call extension 911
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            # Show popular questions with better styling
+            st.markdown("### 💡 Try these popular questions:")
+            st.markdown('<div class="suggestion-container">', unsafe_allow_html=True)
+            cols = st.columns(2)
+            for i, suggestion in enumerate(suggestions[:6]):
+                clean_suggestion = suggestion.split(' ', 1)[1]
+                with cols[i % 2]:
+                    if st.button(suggestion, key=f"suggest_{i}"):
+                        st.session_state[f"clicked_{clean_suggestion}"] = True
+                        st.rerun()
+            st.markdown('</div>', unsafe_allow_html=True)
+    
+    except Exception as e:
+        st.error(f"Error processing your question: {str(e)}")
+        st.info("Please try rephrasing your question or contact support directly.")
 
 # === Sidebar Section (Right Column) ===
 st.markdown("""
@@ -775,8 +816,8 @@ st.markdown("""
         <li>🎯 <strong>Company Policies</strong> — Leave, travel, conduct guidelines</li>
         <li>📞 <strong>Contact Directory</strong> — Key HR, IT, Admin contacts</li>
         <li>🔧 <strong>IT Self-Service</strong> — Password reset, software requests</li>
-        # <li>💡 <strong>Training Portal</strong> — Skills development, certifications</li>
-        # <li>📊 <strong>Performance Hub</strong> — Goals, reviews, feedback</li>
+        <li>💡 <strong>Training Portal</strong> — Skills development, certifications</li>
+        <li>📊 <strong>Performance Hub</strong> — Goals, reviews, feedback</li>
     </ul>
 </div>
 """, unsafe_allow_html=True)
@@ -815,8 +856,8 @@ with col3:
 with col4:
     st.markdown("""
     <div class="stat-card">
-        # <div class="stat-number">95%</div>
-        # <div class="stat-label">Accuracy Rate</div>
+        <div class="stat-number">95%</div>
+        <div class="stat-label">Accuracy Rate</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -829,22 +870,22 @@ with st.expander("🔧 System Information & Knowledge Base", expanded=False):
         <h4>📊 Knowledge Base Summary</h4>
         <ul>
             <li><strong>Total Topics:</strong> {len(df_qna)} comprehensive answers</li>
-            <li><strong>Categories:</strong> HR, IT Support, Policies, Benefits</li>
+            <li><strong>Categories:</strong> HR, IT Support, Policies, Benefits, Training</li>
             <li><strong>Last Updated:</strong> August 2025</li>
-            # <li><strong>Coverage:</strong> Company-wide policies and procedures</li>
-            # <li><strong>Response Time:</strong> <500ms average</li>
-            # <li><strong>Accuracy:</strong> 95%+ for known topics</li>
-            # <li><strong>Language:</strong> English with multilingual support planned</li>
-            # <li><strong>Availability:</strong> 24/7/365 with 99.9% uptime</li>
+            <li><strong>Coverage:</strong> Company-wide policies and procedures</li>
+            <li><strong>Response Time:</strong> <500ms average</li>
+            <li><strong>Accuracy:</strong> 95%+ for known topics</li>
+            <li><strong>Language:</strong> English with multilingual support planned</li>
+            <li><strong>Availability:</strong> 24/7/365 with 99.9% uptime</li>
         </ul>
         <br>
         <h4>🤖 AI Technology</h4>
-        # <ul>
-        #     <li><strong>Model:</strong> Sentence Transformers (all-MiniLM-L6-v2)</li>
-        #     <li><strong>Matching:</strong> Semantic similarity with cosine distance</li>
-        #     <li><strong>Confidence Threshold:</strong> 60% minimum for answers</li>
-        #     <li><strong>Fallback:</strong> Human support referral for low confidence</li>
-        # </ul>
+        <ul>
+            <li><strong>Model:</strong> Sentence Transformers (all-MiniLM-L6-v2)</li>
+            <li><strong>Matching:</strong> Semantic similarity with cosine distance</li>
+            <li><strong>Confidence Threshold:</strong> 60% minimum for answers</li>
+            <li><strong>Fallback:</strong> Human support referral for low confidence</li>
+        </ul>
     </div>
     """, unsafe_allow_html=True)
 
@@ -854,6 +895,7 @@ st.markdown("""
     <div class="footer-title">💼 Employee Help Center</div>
     <div class="footer-subtitle">Your intelligent workplace assistant for instant support and guidance</div>
     <div class="footer-note">
+        🚀 Powered by AI • 🔒 Secure & Private • 📱 Mobile Friendly
         <br><br>
         For complex issues or personalized assistance, please contact the relevant department directly.
         <br>
