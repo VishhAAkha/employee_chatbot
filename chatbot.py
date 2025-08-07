@@ -610,7 +610,7 @@ def get_answer(user_query, df_qna, question_embeddings, model, threshold=0.6):
 
     best_question = df_qna.iloc[best_idx]["Question"]
     best_answer = df_qna.iloc[best_idx]["Answer / Statement"]
-    return best_question, best_answer, confidence
+    return best_question, best_answer
 
 # Load resources
 with st.spinner('⚡ Loading Help Center...'):
@@ -704,7 +704,7 @@ if user_input:
                 <strong>🤖 AI Assistant:</strong><br>
                 {answer}
                 <div class="confidence-pill">
-                    ✨ Confidence: {score:.0%}
+                    # ✨ Confidence: {score:.0%}
                 </div>
             </div>
         </div>
