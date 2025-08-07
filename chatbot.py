@@ -663,16 +663,24 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 # === System Information (Collapsible) ===
 with st.expander("🔧 System Information", expanded=False):
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        st.markdown("**📊 Knowledge Base**")
-        st.success(f"""
-        - **Total Topics**: {len(df_qna)}
-        - **Categories**: HR, IT, Policies, Benefits
-        - **Last Updated**: August 2025
-        - **Coverage**: Company-wide policies
-        """)
+    st.markdown(f"""
+    <div style="background: linear-gradient(135deg, #e9ecef, #f8f9fa);
+                border-radius: 12px;
+                padding: 1.5rem 2rem;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+                font-size: 0.95rem;
+                color: #2c3e50;
+                line-height: 1.6;">
+        <h4 style="margin-bottom: 1rem;">📊 Knowledge Base Summary</h4>
+        <ul style="list-style: none; padding-left: 0;">
+            <li><strong>Total Topics:</strong> {len(df_qna)}</li>
+            <li><strong>Categories:</strong> HR, IT, Policies, Benefits</li>
+            <li><strong>Last Updated:</strong> August 2025</li>
+            <li><strong>Coverage:</strong> Company-wide policies</li>
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
+
     
     # with col2:
     #     st.markdown("**⚙️ Technical Details**")
@@ -690,7 +698,7 @@ st.markdown("""
     <div class="footer-subtitle">Your go-to resource for workplace questions and support</div>
     <div class="footer-note">
         For complex issues or personalized assistance, please contact the relevant department directly.
-        <br>Built with ❤️ by Vishakha Deshpande
+        <br> By Vishakha Deshpande . Internal use only
     </div>
 </div>
 """, unsafe_allow_html=True)
