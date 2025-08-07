@@ -759,15 +759,15 @@ with col3:
     </div>
     """, unsafe_allow_html=True)
 
-with col4:
-    st.markdown("""
-    <div class="stat-card">
-        <div class="stat-number">95%</div>
-        <div class="stat-label">Success Rate</div>
-    </div>
-    """, unsafe_allow_html=True)
+# with col4:
+#     st.markdown("""
+#     <div class="stat-card">
+#         <div class="stat-number">95%</div>
+#         <div class="stat-label">Success Rate</div>
+#     </div>
+#     """, unsafe_allow_html=True)
 
-st.markdown('</div>', unsafe_allow_html=True)
+# st.markdown('</div>', unsafe_allow_html=True)
 
 # === System Information (Collapsible) ===
 with st.expander("🔧 System Information & Knowledge Base", expanded=False):
