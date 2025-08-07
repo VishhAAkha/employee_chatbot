@@ -879,13 +879,6 @@ with st.expander("🔧 System Information & Knowledge Base", expanded=False):
             <li><strong>Availability:</strong> 24/7/365 with 99.9% uptime</li>
         </ul>
         <br>
-        <h4>🤖 AI Technology</h4>
-        <ul>
-            <li><strong>Model:</strong> Sentence Transformers (all-MiniLM-L6-v2)</li>
-            <li><strong>Matching:</strong> Semantic similarity with cosine distance</li>
-            <li><strong>Confidence Threshold:</strong> 60% minimum for answers</li>
-            <li><strong>Fallback:</strong> Human support referral for low confidence</li>
-        </ul>
     </div>
     """, unsafe_allow_html=True)
 
@@ -895,7 +888,7 @@ st.markdown("""
     <div class="footer-title">💼 Employee Help Center</div>
     <div class="footer-subtitle">Your intelligent workplace assistant for instant support and guidance</div>
     <div class="footer-note">
-        🚀 Powered by AI • 🔒 Secure & Private • 📱 Mobile Friendly
+      
         <br><br>
         For complex issues or personalized assistance, please contact the relevant department directly.
         <br>
