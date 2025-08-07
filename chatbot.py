@@ -704,7 +704,7 @@ if user_input:
                 <strong>🤖 AI Assistant:</strong><br>
                 {answer}
                 <div class="confidence-pill">
-                    # ✨ Confidence: {score:.0%}
+                     ✨ Confidence: {score:.0%}
                 </div>
             </div>
         </div>
